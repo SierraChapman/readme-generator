@@ -2,14 +2,24 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
 
-// Console log introductory message
+// Console.log introductory message
 
 // Prompt user to input information using inquirer
 
 // Construct README string from input using string literals
+let readmeString = "# Test File";
 
-// Determine output location
+// Choose and create output location
+const outputDir = "output";
 
-// Write string to README file using fs
+fs.mkdir(outputDir, err => {
+    if (err) throw err;
 
-// Console.log success message containing output location
+    // Write string to README file using fs
+    fs.writeFile(outputDir + "/README.md", readmeString, err => {
+        if (err) throw err;
+
+        // Console.log success message containing output location
+        console.log("File saved at " + outputDir + "/README.md");
+    });
+});
