@@ -2,6 +2,15 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
 
+// Function to validate something was inputted
+function isNotEmpty(inputStr) {
+    if (inputStr) {
+        return true;
+    } else {
+        return "This is a required field.";
+    }
+}
+
 // Console.log introductory message
 console.log("Welcome to the readme generator.")
 
@@ -11,12 +20,14 @@ inquirer
         {
             type: "input",
             name: "title",
-            message: "What is the name of the project?"
+            message: "What is the name of the project?",
+            validate: isNotEmpty
         },
         {
             type: "input",
             name: "description",
-            message: "Describe the project:"
+            message: "Describe the project:",
+            validate: isNotEmpty
         }
     ])
     .then(answers => {
