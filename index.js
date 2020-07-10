@@ -10,13 +10,18 @@ inquirer
     .prompt([
         {
             type: "input",
-            message: "What is the name of the project?",
-            name: "title"
+            name: "title",
+            message: "What is the name of the project?"
+        },
+        {
+            type: "input",
+            name: "description",
+            message: "Describe the project:"
         }
     ])
     .then(answers => {
         // Construct README string from input using string literals
-        let readmeString = `# ${answers.title}`;
+        let readmeString = `# ${answers.title}\n\n${answers.description}`;
 
         // Choose and create output location
         // output-n where n is the minimum integer that is greater than the rest 
