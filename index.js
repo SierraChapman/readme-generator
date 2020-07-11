@@ -12,7 +12,7 @@ function isNotEmpty(inputStr) {
 }
 
 // Console.log introductory message
-console.log("Welcome to the readme generator.")
+console.log("\nWelcome to the readme generator.\n")
 
 // Prompt user to input information using inquirer
 inquirer
@@ -28,6 +28,11 @@ inquirer
             name: "description",
             message: "Describe the project:",
             validate: isNotEmpty
+        },
+        {
+            type: "input",
+            name: "installation",
+            message: "Enter the command to install dependencies: "
         }
     ])
     .then(answers => {
@@ -37,14 +42,19 @@ inquirer
         let readmeBody = "";
 
         // Function to add a section
-        function addSection(sectionName, sectionText) {
+        function addSection(sectionName, sectionText, codeSnippet) {
             // Add to readmeBody
             readmeBody += `## ${sectionName}\n\n${sectionText}\n\n`;
+
+            if (codeSnippet) {
+                readmeBody += "```\n" + codeSnippet + "\n```\n\n";
+            }
+
             // Add to tableOfContents
             tableOfContents += `* [${sectionName}](#${sectionName.toLowerCase().split(" ").join("-")})\n\n`;
         }
 
-        addSection("Deployed Link", "* [GitHub Pages](#)");
+        addSection("Installation", "After downloading this repository, run the following command inside the repository to install the necessary dependencies:", answers.installation);
 
         readmeString += tableOfContents + readmeBody;
 
@@ -71,7 +81,7 @@ inquirer
                         if (err) throw err;
 
                         // Console.log success message containing output location
-                        console.log("File saved at " + outputDir + "/README.md");
+                        console.log("\nFile saved at " + outputDir + "/README.md\n");
                 });
             });
         });
