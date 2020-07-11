@@ -91,6 +91,7 @@ inquirer
         // Add sections
         addSection("Installation", "After downloading this repository, run the following command inside the repository to install the necessary dependencies:", answers.installation);
         addSection("Usage", answers.usage);
+        if (licenseName) addSection("License", `This project is licensed under the ${licenseName} license.`);
 
         readmeString += tableOfContents + readmeBody;
 
