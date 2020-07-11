@@ -32,7 +32,21 @@ inquirer
     ])
     .then(answers => {
         // Construct README string from input using string literals
-        let readmeString = `# ${answers.title}\n\n${answers.description}`;
+        let readmeString = `# ${answers.title}\n\n${answers.description}\n\n`;
+        let tableOfContents = "## Table of Contents\n\n";
+        let readmeBody = "";
+
+        // Function to add a section
+        function addSection(sectionName, sectionText) {
+            // Add to readmeBody
+            readmeBody += `## ${sectionName}\n\n${sectionText}\n\n`;
+            // Add to tableOfContents
+            tableOfContents += `* [${sectionName}](#${sectionName.toLowerCase().split(" ").join("-")})\n\n`;
+        }
+
+        addSection("Deployed Link", "* [GitHub Pages](#)");
+
+        readmeString += tableOfContents + readmeBody;
 
         // Choose and create output location
         // output-n where n is the minimum integer that is greater than the rest 
