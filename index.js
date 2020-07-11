@@ -47,14 +47,28 @@ inquirer
         },
         {
             type: "input",
-            name: "license-other",
+            name: "otherLicense",
             message: "Enter license name:",
             when: answers => (answers.license === "Other"),
         },
     ])
     .then(answers => {
+        // Determine license name
+        let licenseName;
+        if (answers.license === "None") {
+            licenseName = "";
+        } else if (answers.license === "Other") {
+            licenseName = answers.otherLicense;
+        } else {
+            licenseName = answers.license;
+        }
+
         // Construct README string from input using string literals
-        let readmeString = `# ${answers.title}\n\n${answers.description}\n\n`;
+        let readmeString = `# ${answers.title}\n\n`;
+        if (licenseName) {
+            readmeString += `![${licenseName} license](https://img.shields.io/badge/license-${licenseName.split(" ").join("_").split("-").join("--")}-blue.svg)\n\n`;
+        }
+        readmeString += `## Description\n\n${answers.description}\n\n`;
         let tableOfContents = "## Table of Contents\n\n";
         let readmeBody = "";
 
