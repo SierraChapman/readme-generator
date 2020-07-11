@@ -78,7 +78,7 @@ inquirer
 
             fileArray.forEach(fileName => {
                 // If the file has a larger number than outputDir, make outputDir larger
-                if (fileName.slice(0, 7) === "output-" && fileName.slice(7) >= outputDir.slice(7)) {
+                if (fileName.slice(0, 7) === "output-" && parseInt(fileName.slice(7)) >= parseInt(outputDir.slice(7))) {
                     outputDir = "output-" + (parseInt(fileName.slice(7)) + 1);
                 }
             });
