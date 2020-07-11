@@ -43,6 +43,9 @@ inquirer
 
         // Function to add a section
         function addSection(sectionName, sectionText, codeSnippet) {
+            // Empty strings in sectionText or codeSnippet mean we shouldn't add section
+            if (sectionText === "" || codeSnippet === "") return;
+
             // Add to readmeBody
             readmeBody += `## ${sectionName}\n\n${sectionText}\n\n`;
 
