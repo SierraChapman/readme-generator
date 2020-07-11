@@ -32,7 +32,12 @@ inquirer
         {
             type: "input",
             name: "installation",
-            message: "Enter the command to install dependencies: "
+            message: "Enter the command to install dependencies:"
+        },
+        {
+            type: "input",
+            name: "usage",
+            message: "What does the user need to know about using the product?"
         }
     ])
     .then(answers => {
@@ -57,7 +62,9 @@ inquirer
             tableOfContents += `* [${sectionName}](#${sectionName.toLowerCase().split(" ").join("-")})\n\n`;
         }
 
+        // Add sections
         addSection("Installation", "After downloading this repository, run the following command inside the repository to install the necessary dependencies:", answers.installation);
+        addSection("Usage", answers.usage);
 
         readmeString += tableOfContents + readmeBody;
 
