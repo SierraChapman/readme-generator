@@ -38,7 +38,19 @@ inquirer
             type: "input",
             name: "usage",
             message: "What does the user need to know about using the product?"
-        }
+        },
+        {
+            type: "list",
+            name: "license",
+            message: "What is the license for the software?",
+            choices: ["MIT", "Apache-2.0", "GPLv3", "Other", "None"]
+        },
+        {
+            type: "input",
+            name: "license-other",
+            message: "Enter license name:",
+            when: answers => (answers.license === "Other"),
+        },
     ])
     .then(answers => {
         // Construct README string from input using string literals
