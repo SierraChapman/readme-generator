@@ -19,6 +19,18 @@ inquirer
     .prompt([
         {
             type: "input",
+            name: "email",
+            message: "What is your email address?",
+            validate: isNotEmpty
+        },
+        {
+            type: "input",
+            name: "username",
+            message: "What is your GitHub username?",
+            validate: isNotEmpty
+        },
+        {
+            type: "input",
             name: "title",
             message: "What is the name of the project?",
             validate: isNotEmpty
@@ -104,6 +116,7 @@ inquirer
         if (licenseName) addSection("License", `This project is licensed under the ${licenseName} license.`);
         addSection("Contributing", answers.contributing);
         addSection("Tests", "To run tests, run the following command:", answers.tests);
+        addSection("Questions", `If you have any questions about the repo, open an issue or contact me directly at ${answers.email}. You can find more of my work at [${answers.username}](https://github.com/${answers.username}/).`);
 
         readmeString += tableOfContents + readmeBody;
 
