@@ -56,6 +56,11 @@ inquirer
             name: "contributing",
             message: "What do developers need to know about contributing to the application?"
         },
+        {
+            type: "input",
+            name: "tests",
+            message: "Enter the command to run tests:"
+        },
     ])
     .then(answers => {
         // Determine license name
@@ -98,6 +103,7 @@ inquirer
         addSection("Usage", answers.usage);
         if (licenseName) addSection("License", `This project is licensed under the ${licenseName} license.`);
         addSection("Contributing", answers.contributing);
+        addSection("Tests", "To run tests, run the following command:", answers.tests);
 
         readmeString += tableOfContents + readmeBody;
 
