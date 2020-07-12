@@ -51,6 +51,11 @@ inquirer
             message: "Enter license name:",
             when: answers => (answers.license === "Other"),
         },
+        {
+            type: "input",
+            name: "contributing",
+            message: "What do developers need to know about contributing to the application?"
+        },
     ])
     .then(answers => {
         // Determine license name
@@ -92,6 +97,7 @@ inquirer
         addSection("Installation", "After downloading this repository, run the following command inside the repository to install the necessary dependencies:", answers.installation);
         addSection("Usage", answers.usage);
         if (licenseName) addSection("License", `This project is licensed under the ${licenseName} license.`);
+        addSection("Contributing", answers.contributing);
 
         readmeString += tableOfContents + readmeBody;
 
