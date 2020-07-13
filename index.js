@@ -66,6 +66,11 @@ inquirer
             message: "What does the user need to know about using the product?"
         },
         {
+            type: "input",
+            name: "demonstration",
+            message: "Enter path to GIF demonstrating usage:"
+        },
+        {
             type: "checkbox",
             name: "builtWith",
             message: "Which of the following were used in the project?",
@@ -139,6 +144,7 @@ inquirer
         // Add sections
         addSection("Installation", "After downloading this repository, run the following command inside the repository to install the necessary dependencies:", answers.installation);
         addSection("Usage", answers.usage);
+        if (answers.demonstration) addSection("Demonstration", `![Demonstration of application](${answers.demonstration})`);
         if (answers.builtWith) {
             let builtWithList = "";
 
