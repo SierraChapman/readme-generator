@@ -11,6 +11,20 @@ function isNotEmpty(inputStr) {
     }
 }
 
+// Store url's for coding languages/libraries
+builtWithUrls = new Map([
+    ["HTML", "https://developer.mozilla.org/en-US/docs/Web/HTML"], 
+    ["Google Fonts", "https://fonts.google.com/"], 
+    ["Font Awesome", "https://fontawesome.com/"], 
+    ["CSS", "https://developer.mozilla.org/en-US/docs/Web/CSS"], 
+    ["Bootstrap", "https://getbootstrap.com/"], 
+    ["JavaScript", "https://developer.mozilla.org/en-US/docs/Web/JavaScript"], 
+    ["jQuery", "https://jquery.com/"], 
+    ["Node.js", "https://nodejs.org/en/"], 
+    ["Axios", "https://www.npmjs.com/package/axios"], 
+    ["Inquirer", "https://www.npmjs.com/package/inquirer"]
+])
+
 // Console.log introductory message
 console.log("\nWelcome to the readme generator.\n")
 
@@ -52,6 +66,12 @@ inquirer
             message: "What does the user need to know about using the product?"
         },
         {
+            type: "checkbox",
+            name: "builtWith",
+            message: "Which of the following were used in the project?",
+            choices: Array.from(builtWithUrls.keys())
+        },
+        {
             type: "list",
             name: "license",
             message: "What is the license for the software?",
@@ -62,6 +82,7 @@ inquirer
             name: "otherLicense",
             message: "Enter license name:",
             when: answers => (answers.license === "Other"),
+            validate: isNotEmpty
         },
         {
             type: "input",
