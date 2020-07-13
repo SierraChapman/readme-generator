@@ -26,7 +26,7 @@ builtWithUrls = new Map([
 ])
 
 // Console.log introductory message
-console.log("\nWelcome to the readme generator.\n")
+console.log("\nWelcome to the README generator. Answer the prompts to generate a README.\n")
 
 // Prompt user to input information using inquirer
 inquirer
@@ -186,7 +186,7 @@ inquirer
                         if (err) throw err;
 
                         // Console.log success message containing output location
-                        console.log("\nFile saved at " + outputDir + "/README.md\n");
+                        console.log("\nYour README file has been saved at " + outputDir + "/README.md\n");
                 });
             });
         });
