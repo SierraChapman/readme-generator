@@ -72,6 +72,11 @@ inquirer
             choices: Array.from(builtWithUrls.keys())
         },
         {
+            type: "input",
+            name: "deployedLink",
+            message: "Enter the deployed link:"
+        },
+        {
             type: "list",
             name: "license",
             message: "What is the license for the software?",
@@ -134,11 +139,22 @@ inquirer
         // Add sections
         addSection("Installation", "After downloading this repository, run the following command inside the repository to install the necessary dependencies:", answers.installation);
         addSection("Usage", answers.usage);
+        if (answers.builtWith) {
+            let builtWithList = "";
+
+            for (let i = 0; i < answers.builtWith.length; i++) {
+                builtWithList += `* [${answers.builtWith[i]}](${builtWithUrls.get(answers.builtWith[i])})\n`;
+            }
+
+            addSection("Built With", builtWithList);
+        }
+        if (answers.deployedLink) addSection("Deployed Link", `* [See Live Site](${answers.deployedLink})`);
         if (licenseName) addSection("License", `This project is licensed under the ${licenseName} license.`);
         addSection("Contributing", answers.contributing);
         addSection("Tests", "To run tests, run the following command:", answers.tests);
         addSection("Questions", `If you have any questions about the repo, open an issue or contact me directly at ${answers.email}. You can find more of my work at [${answers.username}](https://github.com/${answers.username}/).`);
 
+        // Construct full readme
         readmeString += tableOfContents + readmeBody;
 
         // Choose and create output location
