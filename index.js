@@ -14,15 +14,23 @@ function isNotEmpty(inputStr) {
 // Store url's for coding languages/libraries
 builtWithUrls = new Map([
     ["HTML", "https://developer.mozilla.org/en-US/docs/Web/HTML"], 
+    ["CSS", "https://developer.mozilla.org/en-US/docs/Web/CSS"], 
+    ["JavaScript", "https://developer.mozilla.org/en-US/docs/Web/JavaScript"], 
+    ["SQL", "https://developer.mozilla.org/en-US/docs/Glossary/SQL"],
+    ["Git", "https://git-scm.com/"],
+    ["GitHub", "https://github.com/"],
+    ["Heroku", "https://www.heroku.com/"],
+    ["MySQL", "https://www.mysql.com/"],
     ["Google Fonts", "https://fonts.google.com/"], 
     ["Font Awesome", "https://fontawesome.com/"], 
-    ["CSS", "https://developer.mozilla.org/en-US/docs/Web/CSS"], 
     ["Bootstrap", "https://getbootstrap.com/"], 
-    ["JavaScript", "https://developer.mozilla.org/en-US/docs/Web/JavaScript"], 
     ["jQuery", "https://jquery.com/"], 
     ["Node.js", "https://nodejs.org/en/"], 
-    ["Axios", "https://www.npmjs.com/package/axios"], 
-    ["Inquirer", "https://www.npmjs.com/package/inquirer"]
+    ["Node Package Manager", "https://www.npmjs.com/"],
+    ["axios", "https://www.npmjs.com/package/axios"], 
+    ["Express.js", "https://expressjs.com/"],
+    ["Inquirer.js", "https://www.npmjs.com/package/inquirer"],
+    ["mysql (NPM module)", "https://www.npmjs.com/package/mysql"]
 ])
 
 // Console.log introductory message
@@ -152,7 +160,7 @@ inquirer
                 builtWithList += `* [${answers.builtWith[i]}](${builtWithUrls.get(answers.builtWith[i])})\n`;
             }
 
-            addSection("Built With", builtWithList);
+            addSection("Technologies Used", builtWithList);
         }
         if (answers.deployedLink) addSection("Deployed Link", `* [See Live Site](${answers.deployedLink})`);
         if (licenseName) addSection("License", `This project is licensed under the ${licenseName} license.`);
