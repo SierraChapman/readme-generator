@@ -112,6 +112,23 @@ inquirer
             name: "tests",
             message: "Enter the command to run tests:"
         },
+        {
+            type: "input",
+            name: "acknowledgement1",
+            message: "Enter acknowledgements (first of three max):"
+        },
+        {
+            type: "input",
+            name: "acknowledgement2",
+            message: "Second acknowledgement:",
+            when: answers => (answers.acknowledgement1 !== "")
+        },
+        {
+            type: "input",
+            name: "acknowledgement3",
+            message: "Third acknowledgement:",
+            when: answers => (answers.acknowledgement1 !== "" && answers.acknowledgement2 !== "")
+        },
     ])
     .then(answers => {
         // Determine license name
@@ -166,6 +183,16 @@ inquirer
         if (licenseName) addSection("License", `This project is licensed under the ${licenseName} license.`);
         addSection("Contributing", answers.contributing);
         addSection("Tests", "To run tests, run the following command:", answers.tests);
+        if (answers.acknowledgement1) {
+            let acknowledgements = "* " + answers.acknowledgement1;
+            if (answers.acknowledgement2) {
+                acknowledgements += "\n* " + answers.acknowledgement2;
+                if (answers.acknowledgement3) {
+                    acknowledgements += "\n* " + answers.acknowledgement3;
+                }
+            }
+            addSection("Acknowledgements", acknowledgements);
+        }
         addSection("Questions", `If you have any questions about the repo, open an issue or contact me directly at ${answers.email}. You can find more of my work at [${answers.username}](https://github.com/${answers.username}/).`);
 
         // Construct full readme
