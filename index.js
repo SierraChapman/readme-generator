@@ -79,6 +79,17 @@ inquirer
             message: "Enter path to GIF demonstrating usage:"
         },
         {
+            type: "input",
+            name: "codeSnippet",
+            message: "Enter a code snippet to highlight (use \"\\n\" to separate lines):"
+        },
+        {
+            type: "input",
+            name: "codeExplanation",
+            message: "What would you like to say about the code snippet?",
+            when: answers => (answers.codeSnippet !== ""),
+        },
+        {
             type: "checkbox",
             name: "builtWith",
             message: "Which of the following were used in the project?",
@@ -170,6 +181,7 @@ inquirer
         addSection("Installation", "After downloading this repository, run the following command inside the repository to install the necessary dependencies:", answers.installation);
         addSection("Usage", answers.usage);
         if (answers.demonstration) addSection("Demonstration", `![Demonstration of application](${answers.demonstration})`);
+        addSection("Code Explanation", answers.codeExplanation, answers.codeSnippet);
         if (answers.builtWith) {
             let builtWithList = "";
 
