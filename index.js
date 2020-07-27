@@ -79,15 +79,28 @@ inquirer
             message: "Enter path to GIF demonstrating usage:"
         },
         {
-            type: "input",
+            type: "list",
+            name: "codeLanguage",
+            message: "If you want to enter a code snippet in an editor (e.g. vim), select the language.",
+            choices: [
+                { name: "None (I don't want to enter a code snippet).", value: null },
+                { name: "JavaScript", value: "javascript" },
+                { name: "HTML", value: "html" },
+                { name: "CSS", value: "css" },
+                { name: "Handlebars", value: "handlebars" },
+            ]
+        },
+        {
+            type: "editor",
             name: "codeSnippet",
-            message: "Enter a code snippet to highlight (use \"\\n\" to separate lines):"
+            message: "Enter the code snippet you would like to highlight.",
+            when: answers => answers.codeLanguage,
         },
         {
             type: "input",
             name: "codeExplanation",
             message: "What would you like to say about the code snippet?",
-            when: answers => (answers.codeSnippet !== ""),
+            when: answers => (answers.codeLanguage && answers.codeSnippet !== ""),
         },
         {
             type: "checkbox",
