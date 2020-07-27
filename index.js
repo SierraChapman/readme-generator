@@ -95,6 +95,7 @@ inquirer
             name: "codeSnippet",
             message: "Enter the code snippet you would like to highlight.",
             when: answers => answers.codeLanguage,
+            filter: userInput => userInput.trim(),
         },
         {
             type: "input",
@@ -175,15 +176,15 @@ inquirer
         let readmeBody = "";
 
         // Function to add a section
-        function addSection(sectionName, sectionText, codeSnippet) {
+        function addSection(sectionName, sectionText, codeSnippet, codeLanguage="") {
             // Empty strings in sectionText or codeSnippet mean we shouldn't add section
-            if (sectionText === "" || codeSnippet === "") return;
+            if (!sectionText) return;
 
             // Add to readmeBody
             readmeBody += `## ${sectionName}\n\n${sectionText}\n\n`;
 
             if (codeSnippet) {
-                readmeBody += "```\n" + codeSnippet + "\n```\n\n";
+                readmeBody += "```" + codeLanguage + "\n" + codeSnippet + "\n```\n\n";
             }
 
             // Add to tableOfContents
@@ -194,7 +195,7 @@ inquirer
         addSection("Installation", "After downloading this repository, run the following command inside the repository to install the necessary dependencies:", answers.installation);
         addSection("Usage", answers.usage);
         if (answers.demonstration) addSection("Demonstration", `![Demonstration of application](${answers.demonstration})`);
-        addSection("Code Explanation", answers.codeExplanation, answers.codeSnippet);
+        addSection("Code Explanation", answers.codeExplanation, answers.codeSnippet, answers.codeLanguage);
         if (answers.builtWith) {
             let builtWithList = "";
 
