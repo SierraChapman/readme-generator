@@ -21,16 +21,21 @@ builtWithUrls = new Map([
     ["GitHub", "https://github.com/"],
     ["Heroku", "https://www.heroku.com/"],
     ["MySQL", "https://www.mysql.com/"],
+    ["JawsDB", "https://elements.heroku.com/addons/jawsdb"],
     ["Google Fonts", "https://fonts.google.com/"], 
     ["Font Awesome", "https://fontawesome.com/"], 
     ["Bootstrap", "https://getbootstrap.com/"], 
+    ["Materialize", "https://materializecss.com/"],
+    ["Pure.css", "https://purecss.io/"],
     ["jQuery", "https://jquery.com/"], 
     ["Node.js", "https://nodejs.org/en/"], 
-    ["Node Package Manager", "https://www.npmjs.com/"],
-    ["axios", "https://www.npmjs.com/package/axios"], 
+    ["Node Package Manager (NPM)", "https://www.npmjs.com/"],
+    ["Axios", "https://www.npmjs.com/package/axios"], 
     ["Express.js", "https://expressjs.com/"],
+    ["Express-Handlebars", "https://www.npmjs.com/package/express-handlebars"],
     ["Inquirer.js", "https://www.npmjs.com/package/inquirer"],
-    ["mysql (NPM module)", "https://www.npmjs.com/package/mysql"]
+    ["MySQL (NPM module)", "https://www.npmjs.com/package/mysql"],
+    ["Sequelize", "https://sequelize.org/"],
 ])
 
 // Console.log introductory message
